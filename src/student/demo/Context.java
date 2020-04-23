@@ -2,12 +2,8 @@ package student.demo;
 
 import student.demo.beans.Student;
 import student.demo.beans.Teacher;
-import student.demo.utilsImpl.TeachersUtilImpl;
-import student.demo.utilsImpl.UtilImpl;
-import student.demo.utilsInter.StudentsUtil;
-import student.demo.utilsInter.TeachersUtil;
-import student.demo.utilsImpl.StudentsUtilImpl;
-import student.demo.utilsInter.Util;
+import student.demo.utilsImpl.*;
+import student.demo.utilsInter.*;
 
 public class Context {
     public static StudentsUtil getStudentsUtil() {
@@ -20,6 +16,14 @@ public class Context {
 
     public static Util getUtil() {
         return new UtilImpl();
+    }
+
+    public static MenuUtil getMenuUtil() {
+        return new MenuUtilImpl();
+    }
+
+    public static LoginUtil getLoginUtil() {
+        return new LoginUtilImpl();
     }
 
     public static Student getStudent() {

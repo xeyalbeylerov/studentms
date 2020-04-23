@@ -47,4 +47,9 @@ public class Student {
     public void setAge(Integer age) {
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id +" name='" + name + " surname='" + surname +" age=" + age;
+    }
 }
