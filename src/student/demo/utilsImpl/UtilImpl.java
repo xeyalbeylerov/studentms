@@ -1,5 +1,6 @@
 package student.demo.utilsImpl;
 
+import student.demo.Context;
 import student.demo.beans.Teacher;
 import student.demo.configs.Config;
 import student.demo.utilsInter.Util;
@@ -32,13 +33,13 @@ public class UtilImpl implements Util {
     public void Cycle() {
 
         while (true) {
-            if (!Config.loginUtil.login()) {
+            if (!Context.loginUtil.login()) {
                 continue;
             }
             while (true) {
                 Teacher t = Config.teacher;
                 System.out.println(welcomeText(t.getName()));
-                Config.menuUtil.menu(t.getId() == 1);
+                Context.menuUtil.menu(t.getId() == 1);
             }
         }
     }

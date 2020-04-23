@@ -1,6 +1,6 @@
 package student.demo.utilsImpl;
 
-import student.demo.beans.Teacher;
+import student.demo.Context;
 import student.demo.configs.Config;
 import student.demo.utilsInter.LoginUtil;
 
@@ -8,7 +8,7 @@ public class LoginUtilImpl implements LoginUtil {
 
     @Override
     public boolean LoginLogic(String username, String password) {
-        if ("admin".equalsIgnoreCase(username) && "admin".equals(password)) {
+        if (Config.username.equalsIgnoreCase(username) && Config.password.equals(password)) {
             return true;
         }
         return false;
@@ -16,10 +16,10 @@ public class LoginUtilImpl implements LoginUtil {
 
     @Override
     public boolean login() {
-        String username = Config.util.inputText("Type login: ");
-        String password = Config.util.inputText("Type password: ");
+        String username = Context.util.inputText("Type login: ");
+        String password = Context.util.inputText("Type password: ");
         if (LoginLogic(username, password)) {
-            Config.teacher=new Teacher(1,"Sarkhan","Rasullu",27);
+//            Config.teacher=new Teacher(1,"Sarkhan","Rasullu",27);
             System.out.println("login+");
             return true;
         } else {

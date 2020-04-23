@@ -1,6 +1,6 @@
 package student.demo.utilsImpl;
 
-import student.demo.configs.Config;
+import student.demo.Context;
 import student.demo.utilsInter.MenuUtil;
 
 public class MenuUtilImpl implements MenuUtil {
@@ -15,9 +15,9 @@ public class MenuUtilImpl implements MenuUtil {
 
     @Override
     public String menuTexts(boolean isAdmin) {
-        String text = Config.studentsUtil.getMenuText();
+        String text = Context.studentsUtil.getMenuText();
         if (isAdmin) {
-            text += Config.teachersUtil.getMenuText();
+            text += Context.teachersUtil.getMenuText();
         }
         text += "\n 6. Exit";
         return text;
@@ -27,9 +27,9 @@ public class MenuUtilImpl implements MenuUtil {
     public int menuInput(boolean isAdmin) {
         int selectedMenu = -1;
         if (isAdmin) {
-            selectedMenu = Config.util.inputNumber("Admin \n please select menu:");
+            selectedMenu = Context.util.inputNumber("Admin \n please select menu:");
         } else {
-            selectedMenu = Config.util.inputNumber("Student \n please select menu:");
+            selectedMenu = Context.util.inputNumber("Student \n please select menu:");
         }
         return selectedMenu;
     }
@@ -37,14 +37,15 @@ public class MenuUtilImpl implements MenuUtil {
     @Override
     public boolean menuLogic(int selectedMenu) {
         if (selectedMenu == 1) {
+            Context.teachersUtil.showInfo();
         } else if (selectedMenu == 2) {
-            Config.teachersUtil.registerStudent();
+            Context.teachersUtil.registerStudent();
         } else if (selectedMenu == 3) {
-            Config.teachersUtil.getAllStudents();
+            Context.teachersUtil.getAllStudents();
         } else if (selectedMenu == 4) {
-            Config.teachersUtil.findStudent();
+            Context.teachersUtil.findStudent();
         } else if (selectedMenu == 5) {
-            Config.teachersUtil.updateStudent();
+            Context.teachersUtil.updateStudent();
         } else if (selectedMenu == 6) {
             System.exit(0);
         } else {

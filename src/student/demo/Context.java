@@ -33,4 +33,11 @@ public class Context {
     public static Teacher getTeacher() {
         return new Teacher();
     }
+
+    public static StudentsUtil studentsUtil = Context.getStudentsUtil();
+    public static TeachersUtil teachersUtil = Context.getTeachersUtil();
+    public static Util util = Context.getUtil();
+    public static MenuUtil menuUtil=Context.getMenuUtil();
+    public static LoginUtil loginUtil=Context.getLoginUtil();
+//    public static Student[] students=new Student[1];
 }
