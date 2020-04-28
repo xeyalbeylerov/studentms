@@ -20,7 +20,6 @@ public class LoginUtilImpl implements LoginUtil {
         String password = Context.util.inputText("Type password: ");
         if (LoginLogic(username, password)) {
 //            Config.teacher=new Teacher(1,"Sarkhan","Rasullu",27);
-            System.out.println("login+");
             return true;
         } else {
 //            throw new AccessDeniedException("Login or Password is incorrect");

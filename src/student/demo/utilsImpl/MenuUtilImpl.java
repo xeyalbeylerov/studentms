@@ -1,6 +1,8 @@
 package student.demo.utilsImpl;
 
 import student.demo.Context;
+import student.demo.configs.Config;
+import student.demo.file.FileObj;
 import student.demo.utilsInter.MenuUtil;
 
 public class MenuUtilImpl implements MenuUtil {
@@ -47,6 +49,8 @@ public class MenuUtilImpl implements MenuUtil {
         } else if (selectedMenu == 5) {
             Context.teachersUtil.updateStudent();
         } else if (selectedMenu == 6) {
+
+            FileObj.WriteObjectToFile(Config.studentsMap);
             System.exit(0);
         } else {
             return false;
