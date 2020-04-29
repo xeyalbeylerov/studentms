@@ -7,6 +7,9 @@ import student.demo.configs.Config;
 import student.demo.utilsInter.TeachersUtil;
 import student.demo.utilsInter.Util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TeachersUtilImpl implements TeachersUtil {
 
     @Override
@@ -19,13 +22,34 @@ public class TeachersUtilImpl implements TeachersUtil {
         student.setName(util.inputText("Name: "));
         student.setSurname(util.inputText("Surname: "));
         student.setAge(util.inputNumber("Age: "));
+        student.setUsername(util.inputText("Username: "));
+        student.setPassword(util.inputText("Password: "));
         Config.studentsMap.put(mapSize, student);
         System.out.println("Student is recorded");
         return student;
     }
 
     @Override
-    public void getAllStudents() {
+    public List getAllTeachersPassword() {
+        List<String> list = new ArrayList<>();
+        Config.teachersMap.forEach((k, v) -> {
+            list.add(v.getPassword());
+        });
+        return list;
+    }
+
+    @Override
+    public List getAllTeachersUsername() {
+        List<String> list = new ArrayList<>();
+        Config.teachersMap.forEach((k, v) -> {
+            list.add(v.getUsername());
+        });
+        return list;
+    }
+
+
+    @Override
+    public void printStudents() {
         Config.studentsMap.forEach((k, v) -> {
 
             System.out.println(k + " " + v);
@@ -46,7 +70,8 @@ public class TeachersUtilImpl implements TeachersUtil {
                 "\n      3.Show students" +
                 "\n      4. Find student for id" +
                 "\n      5. Update student" +
-                "\n      6. Delete student";
+                "\n      6. Delete student" +
+                "\n      7. logout";
     }
 
     @Override
@@ -63,7 +88,7 @@ public class TeachersUtilImpl implements TeachersUtil {
         return true;
     }
 
-    @Override
+
     public Student updateStudentFill(Student s) {
         String name = Context.util.inputText("Enter students name: ");
         String surname = Context.util.inputText("Enter students surname: ");

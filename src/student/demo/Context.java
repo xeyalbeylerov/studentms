@@ -6,23 +6,23 @@ import student.demo.utilsImpl.*;
 import student.demo.utilsInter.*;
 
 public class Context {
-    public static StudentsUtil getStudentsUtil() {
+    private static StudentsUtil getStudentsUtil() {
         return new StudentsUtilImpl();
     }
 
-    public static TeachersUtil getTeachersUtil() {
+    private static TeachersUtil getTeachersUtil() {
         return new TeachersUtilImpl();
     }
 
-    public static Util getUtil() {
+    private static Util getUtil() {
         return new UtilImpl();
     }
 
-    public static MenuUtil getMenuUtil() {
+    private static MenuUtil getMenuUtil() {
         return new MenuUtilImpl();
     }
 
-    public static LoginUtil getLoginUtil() {
+    private static LoginUtil getLoginUtil() {
         return new LoginUtilImpl();
     }
 
