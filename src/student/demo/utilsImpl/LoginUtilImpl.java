@@ -18,6 +18,7 @@ public class LoginUtilImpl implements LoginUtil {
     public boolean login() {
         String username = Context.util.inputText("Type login: ");
         String password = Context.util.inputText("Type password: ");
+//        System.out.println("-"+username+"-"+password+"-");
         if (LoginLogic(username, password)) {
 //            Config.teacher=new Teacher(1,"Sarkhan","Rasullu",27);
             return true;

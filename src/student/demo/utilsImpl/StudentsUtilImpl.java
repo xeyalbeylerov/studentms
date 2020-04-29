@@ -14,9 +14,17 @@ public class StudentsUtilImpl implements StudentsUtil {
 
     }
 
+    public boolean mapIsNull(int i) {
+
+        if (null == Config.studentsMap.get(i)) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String getMenuText() {
-        return " 1.Show info";
+        return "      1.Show info";
     }
 
     @Override

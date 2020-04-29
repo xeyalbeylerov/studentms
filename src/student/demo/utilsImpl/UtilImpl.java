@@ -5,6 +5,7 @@ import student.demo.beans.Teacher;
 import student.demo.configs.Config;
 import student.demo.utilsInter.Util;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UtilImpl implements Util {
@@ -18,7 +19,14 @@ public class UtilImpl implements Util {
     public String inputText(String entryName) {
         Scanner scan = new Scanner(System.in);
         System.out.print(entryName);
-        return scan.nextLine();
+        String str=scan.nextLine().trim();
+        if(str.isEmpty()){
+            System.out.println("");
+            System.out.print("Required ");
+
+            str=inputText(entryName);
+        }
+        return str;
     }
 
     @Override
@@ -26,7 +34,24 @@ public class UtilImpl implements Util {
 //        Config.loginUtil.login();
         Scanner scan = new Scanner(System.in);
         System.out.print(entryName);
-        return scan.nextInt();
+        int i=0;
+        try {
+            i = scan.nextInt();
+        }catch (InputMismatchException ex){
+            System.out.println("");
+            System.out.print("Required (only number) ");
+            i=inputNumber(entryName);
+        }
+        return i;
+    }
+
+    @Override
+    public boolean areYouSure(String text) {
+        String typedtext=inputText("Type Y for yes or N for No");
+        if("y".equalsIgnoreCase(typedtext)){
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -36,10 +61,11 @@ public class UtilImpl implements Util {
             if (!Context.loginUtil.login()) {
                 continue;
             }
+            int i=1;
+            Teacher t = Config.teacher;
             while (true) {
-                Teacher t = Config.teacher;
-                System.out.println(welcomeText(t.getName()));
                 Context.menuUtil.menu(t.getId() == 1);
+
             }
         }
     }

@@ -9,4 +9,5 @@ public interface TeachersUtil extends PersonUtil{
     String getMenuText();
     boolean updateStudent();
     Student updateStudentFill(Student s);
+    boolean deleteStudent();
 }

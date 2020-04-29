@@ -21,7 +21,7 @@ public class MenuUtilImpl implements MenuUtil {
         if (isAdmin) {
             text += Context.teachersUtil.getMenuText();
         }
-        text += "\n 6. Exit";
+        text += "\n      7. Exit";
         return text;
     }
 
@@ -29,9 +29,9 @@ public class MenuUtilImpl implements MenuUtil {
     public int menuInput(boolean isAdmin) {
         int selectedMenu = -1;
         if (isAdmin) {
-            selectedMenu = Context.util.inputNumber("Admin \n please select menu:");
+            selectedMenu = Context.util.inputNumber("Admin please select menu:");
         } else {
-            selectedMenu = Context.util.inputNumber("Student \n please select menu:");
+            selectedMenu = Context.util.inputNumber("Student please select menu:");
         }
         return selectedMenu;
     }
@@ -49,6 +49,8 @@ public class MenuUtilImpl implements MenuUtil {
         } else if (selectedMenu == 5) {
             Context.teachersUtil.updateStudent();
         } else if (selectedMenu == 6) {
+            Context.teachersUtil.deleteStudent();
+        }else if (selectedMenu == 7) {
 
             FileObj.WriteObjectToFile(Config.studentsMap);
             System.exit(0);

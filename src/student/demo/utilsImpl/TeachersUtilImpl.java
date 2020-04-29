@@ -16,16 +16,18 @@ public class TeachersUtilImpl implements TeachersUtil {
         Student student = Context.getStudent();
         System.out.println("New id is " + mapSize);
         student.setId(mapSize);
-        student.setName(util.inputText("Adı"));
-        student.setSurname(util.inputText("Soyadı"));
-        student.setAge(util.inputNumber("Yaşı"));
+        student.setName(util.inputText("Name: "));
+        student.setSurname(util.inputText("Surname: "));
+        student.setAge(util.inputNumber("Age: "));
         Config.studentsMap.put(mapSize, student);
+        System.out.println("Student is recorded");
         return student;
     }
 
     @Override
     public void getAllStudents() {
         Config.studentsMap.forEach((k, v) -> {
+
             System.out.println(k + " " + v);
         });
     }
@@ -40,21 +42,24 @@ public class TeachersUtilImpl implements TeachersUtil {
 
     @Override
     public String getMenuText() {
-        return "\n 2.Register students" +
-                "\n 3.Show students" +
-                "\n 4. Find student for id" +
-                "\n 5. Update student";
+        return "\n      2.Register students" +
+                "\n      3.Show students" +
+                "\n      4. Find student for id" +
+                "\n      5. Update student" +
+                "\n      6. Delete student";
     }
 
     @Override
     public boolean updateStudent() {
-        int typedNumber = Context.util.inputNumber("Type students id: ");
-        Student s = Config.studentsMap.get(typedNumber);
-        if (s == null) {
+        int id = Context.util.inputNumber("Type students id: ");
+        if (Context.studentsUtil.mapIsNull(id) == true) {
+            System.err.println("Student " + id + " is not exist");
             return false;
         }
+        Student s = Config.studentsMap.get(id);
         Student updatedStudent = updateStudentFill(s);
-        Config.studentsMap.put(typedNumber, updatedStudent);
+        Config.studentsMap.put(id, updatedStudent);
+        System.out.println("Student " + id + " is updated");
         return true;
     }
 
@@ -70,8 +75,24 @@ public class TeachersUtilImpl implements TeachersUtil {
     }
 
     @Override
+    public boolean deleteStudent() {
+        int id = Context.util.inputNumber("Type students id which you will delete: ");
+        if (Context.studentsUtil.mapIsNull(id) == true) {
+            System.err.println("Student " + id + " is not exist");
+            return false;
+        }
+        if (!Context.util.areYouSure("Are you sure for delete" + id + " student?")) {
+            return false;
+        }
+
+        Config.studentsMap.remove(id);
+        System.err.println("Student " + id + " is deleted");
+        return true;
+    }
+
+    @Override
     public void showInfo() {
-        Teacher t=Config.teachersMap.get(1);
+        Teacher t = Config.teachersMap.get(1);
         System.out.println(t);
     }
 }
